@@ -1,9 +1,0 @@
-/code/build/articubot_one/CMakeFiles/uninstall.dir
-/code/build/articubot_one/CMakeFiles/articubot_one_uninstall.dir
-/code/build/articubot_one/CMakeFiles/test.dir
-/code/build/articubot_one/CMakeFiles/edit_cache.dir
-/code/build/articubot_one/CMakeFiles/rebuild_cache.dir
-/code/build/articubot_one/CMakeFiles/list_install_components.dir
-/code/build/articubot_one/CMakeFiles/install.dir
-/code/build/articubot_one/CMakeFiles/install/local.dir
-/code/build/articubot_one/CMakeFiles/install/strip.dir

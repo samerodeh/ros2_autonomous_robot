@@ -1,0 +1,15 @@
+# colcon output - regenerate with `colcon build`
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

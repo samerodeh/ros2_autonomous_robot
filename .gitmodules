@@ -1,0 +1,3 @@
+[submodule "src/articubot_one"]
+	path = src/articubot_one
+	url = https://github.com/samerodeh/autonomous_vaccum.git
