@@ -1,0 +1,17 @@
+controller_server:
+  ros__parameters:
+    current_goal_checker: "goal_checker"
+
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      robot_radius: 0.22
+
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      robot_radius: 0.22
+
+bt_navigator:
+  ros__parameters:
+    bt_loop_duration: 50
