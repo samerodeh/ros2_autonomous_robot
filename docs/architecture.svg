@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" width="920" height="600" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7c8794"/>
+    </marker>
+    <style>
+      .panel   { fill:#eef2f7; stroke:#d6dde6; stroke-width:1; }
+      .panelt  { font-size:12px; font-weight:600; fill:#5b6673; letter-spacing:.6px; }
+      .box     { fill:#ffffff; stroke:#c3cbd6; stroke-width:1.2; }
+      .boxa    { fill:#ffffff; stroke:#3f7cac; stroke-width:1.6; }
+      .name    { font-size:13.5px; font-weight:600; fill:#1c2128; }
+      .sub     { font-size:10.5px; fill:#6a7480; }
+      .flow    { stroke:#7c8794; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+      .flowb   { stroke:#3f7cac; stroke-width:1.8; fill:none; marker-end:url(#arrow); }
+      .topic   { font-size:10.5px; fill:#4a5563; font-family:'Cascadia Mono', Consolas, monospace; }
+      .topicb  { font-size:10.5px; fill:#3f7cac; font-family:'Cascadia Mono', Consolas, monospace; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="600" fill="#ffffff"/>
+
+  <!-- ============ Simulation ============ -->
+  <rect class="panel" x="24" y="56" width="216" height="200" rx="10"/>
+  <text class="panelt" x="38" y="78">SIMULATION</text>
+  <rect class="box" x="40" y="92" width="184" height="56" rx="7"/>
+  <text class="name" x="56" y="116">ign gazebo -s</text>
+  <text class="sub"  x="56" y="133">headless server, xvfb-run</text>
+  <rect class="box" x="40" y="166" width="184" height="66" rx="7"/>
+  <text class="name" x="56" y="190">slam_test.sdf</text>
+  <text class="sub"  x="56" y="207">12 × 12 m room, boxes</text>
+  <text class="sub"  x="56" y="221">gpu_lidar + RGB camera</text>
+
+  <!-- ============ Bridge ============ -->
+  <rect class="box" x="306" y="120" width="158" height="66" rx="7"/>
+  <text class="name" x="322" y="146">ros_gz_bridge</text>
+  <text class="sub"  x="322" y="163">parameter_bridge</text>
+  <text class="sub"  x="322" y="177">gz transport ⇄ ROS 2</text>
+
+  <path class="flow" d="M 240 153 L 300 153"/>
+
+  <!-- ============ Mapping / TF ============ -->
+  <rect class="panel" x="530" y="56" width="216" height="200" rx="10"/>
+  <text class="panelt" x="544" y="78">MAPPING &amp; TF</text>
+  <rect class="box" x="546" y="92" width="184" height="56" rx="7"/>
+  <text class="name" x="562" y="116">robot_state_publisher</text>
+  <text class="sub"  x="562" y="133">URDF + /joint_states → TF</text>
+  <rect class="box" x="546" y="166" width="184" height="66" rx="7"/>
+  <text class="name" x="562" y="190">slam_toolbox</text>
+  <text class="sub"  x="562" y="207">async online mapping</text>
+  <text class="sub"  x="562" y="221">owns map → odom</text>
+
+  <path class="flow" d="M 470 150 L 540 122"/>
+  <text class="topic" x="474" y="126">/clock</text>
+  <path class="flow" d="M 470 165 L 540 192"/>
+  <text class="topic" x="470" y="212">/scan  /odom</text>
+
+  <!-- ============ Nav2 ============ -->
+  <rect class="panel" x="306" y="316" width="440" height="200" rx="10"/>
+  <text class="panelt" x="320" y="338">NAV2 (lifecycle-managed)</text>
+
+  <rect class="box" x="322" y="352" width="196" height="64" rx="7"/>
+  <text class="name" x="338" y="376">controller_server</text>
+  <text class="sub"  x="338" y="393">DWB local planner,</text>
+  <text class="sub"  x="338" y="407">re-weighted critics</text>
+
+  <rect class="box" x="534" y="352" width="196" height="64" rx="7"/>
+  <text class="name" x="550" y="376">planner_server</text>
+  <text class="sub"  x="550" y="393">NavFn global plan over</text>
+  <text class="sub"  x="550" y="407">the live SLAM costmap</text>
+
+  <rect class="box" x="322" y="432" width="196" height="64" rx="7"/>
+  <text class="name" x="338" y="456">bt_navigator</text>
+  <text class="sub"  x="338" y="473">navigate_to_pose,</text>
+  <text class="sub"  x="338" y="487">replanning + recovery</text>
+
+  <rect class="box" x="534" y="432" width="196" height="64" rx="7"/>
+  <text class="name" x="550" y="456">behavior_server</text>
+  <text class="sub"  x="550" y="473">spin / back-up / wait</text>
+  <text class="sub"  x="550" y="487">recovery behaviours</text>
+
+  <path class="flow" d="M 638 240 L 638 346"/>
+  <text class="topic" x="648" y="288">/map</text>
+  <text class="topic" x="648" y="303">map → odom</text>
+
+  <!-- cmd_vel feedback to the bridge -->
+  <path class="flow" d="M 380 346 L 380 192"/>
+  <text class="topic" x="290" y="250">/cmd_vel</text>
+
+  <!-- ============ Autonomy ============ -->
+  <rect class="panel" x="24" y="316" width="216" height="200" rx="10"/>
+  <text class="panelt" x="38" y="338">AUTONOMY  (this project)</text>
+
+  <rect class="boxa" x="40" y="352" width="184" height="76" rx="7"/>
+  <text class="name" x="56" y="376">frontier_explorer.py</text>
+  <text class="sub"  x="56" y="393">scans /map for free cells</text>
+  <text class="sub"  x="56" y="407">bordering unknown space,</text>
+  <text class="sub"  x="56" y="421">sends NavigateToPose goals</text>
+
+  <rect class="boxa" x="40" y="444" width="184" height="60" rx="7"/>
+  <text class="name" x="56" y="468">patrol_node.py</text>
+  <text class="sub"  x="56" y="485">waypoint loop over a</text>
+  <text class="sub"  x="56" y="499">map, via BasicNavigator</text>
+
+  <path class="flowb" d="M 230 390 L 292 390 L 292 448 L 314 448"/>
+  <path class="flowb" d="M 230 470 L 292 470 L 292 462 L 314 462"/>
+
+  <text class="sub" x="24" y="560" font-size="11">Blue outline = nodes written for this project. Everything else is stock ROS 2 Humble / Nav2 / SLAM Toolbox wiring.</text>
+</svg>
