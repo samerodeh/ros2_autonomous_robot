@@ -27,7 +27,6 @@ install(
 
 install(PROGRAMS
   scripts/patrol_node.py
-  scripts/frontier_explorer_node.py
   scripts/frontier_explorer.py
   DESTINATION lib/${PROJECT_NAME}
 )

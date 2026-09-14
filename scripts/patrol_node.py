@@ -4,6 +4,7 @@ from rclpy.node import Node
 from nav2_simple_commander.robot_navigator import BasicNavigator
 from geometry_msgs.msg import PoseStamped
 from math import sin, cos
+import time
 
 class PatrolNode(Node):
     def __init__(self):
@@ -37,8 +38,10 @@ class PatrolNode(Node):
             self.get_logger().info(f'Going to waypoint {self.current_waypoint}')
             self.navigator.goToPose(goal)
             
+            # Poll rather than busy-wait: isTaskComplete() spins the rclpy executor
+            # internally, so a bare `pass` loop just burns a core.
             while not self.navigator.isTaskComplete():
-                pass
+                time.sleep(0.1)
             
             self.current_waypoint = (self.current_waypoint + 1) % len(self.waypoints)
 
