@@ -114,7 +114,7 @@ Requires ROS 2 Humble, Ignition Gazebo Fortress, and the Nav2 / SLAM Toolbox sta
 
 ```bash
 mkdir -p ~/ros2_ws/src && cd ~/ros2_ws/src
-git clone https://github.com/samerodeh/autonomous_vaccum.git articubot_one
+git clone https://github.com/samerodeh/ros2_autonomous_robot.git articubot_one
 ```
 
 ```bash
