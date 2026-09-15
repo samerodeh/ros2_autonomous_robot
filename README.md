@@ -8,7 +8,7 @@ documentation and its history live in the `articubot_one` package:
 ## Using this workspace
 
 ```bash
-git clone --recurse-submodules https://github.com/samerodeh/autonomous_vaccum.git ros2_ws
+git clone --recurse-submodules https://github.com/samerodeh/ros2_autonomous_robot.git ros2_ws
 cd ros2_ws
 rosdep install --from-paths src --ignore-src -r -y
 colcon build
